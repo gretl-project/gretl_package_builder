@@ -1,0 +1,3 @@
+PKG = mypkg
+$(PKG).gfn: $(PKG).inp $(PKG).spec $(PKG)_sample.inp $(PKG)_help.md
+	gretlcli -e --makepkg $(PKG).inp
