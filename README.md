@@ -19,7 +19,7 @@ an LLM to either walk them through gretl's GUI or actually build the file.
 2. Copy everything between the `---` markers.
 3. Paste it into your LLM of choice, and attach (or paste) your `.inp` file(s) — your function definitions, and a sample script if you already have one.
 
-## The Claude Skill
+## The (Claude) Skill
 
 `skills/gretl-package-builder/` packages the same agent-build workflow as
 `prompts/agent-build.md`, but as a [Claude Skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) —
@@ -43,6 +43,35 @@ are per-user (not centrally pushed to a whole org) — see Anthropic's own
 [Creating custom Skills](https://support.claude.com/en/articles/12512198-creating-custom-skills)
 article for the current, authoritative steps if anything above looks out
 of date.
+
+### Installing it in opencode
+
+[opencode](https://opencode.ai) reads the same kind of `SKILL.md` folder directly — no separate packaging step, and no zip support, so use the unpacked `gretl-package-builder` folder from this repo's `skills/` directory, not the `.skill` file.
+
+Copy that folder into `~/.config/opencode/skills/` in your home directory (on Windows probably, `%USERPROFILE%\.config\opencode\skills\`) so it looks like this:
+
+```
+~/.config/opencode/
+└── skills/
+    └── gretl-package-builder/
+        ├── SKILL.md
+        ├── references/
+        └── assets/
+```
+
+That folder is normally hidden from view, so on macOS use Finder's
+`Cmd + Shift + G` ("Go to Folder") and on Windows type the path into File
+Explorer's address bar to get there. Create any of the `.config`,
+`opencode`, or `skills` folders yourself if they don't exist yet.
+
+Restart opencode. Either opencode picks the skill up automatically, and test it by typing:
+
+```
+/gretl-package-builder Are you there?
+```
+
+You may need to initialize it first, via the `/Skills` command in the opencode console.
+
 
 ### Contributing to the skill
 
